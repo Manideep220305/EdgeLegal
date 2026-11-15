@@ -341,6 +341,16 @@ also track the live app work. The upload API rejects PDFs without
 extractable text and PDFs it cannot open. The UI explains how to retry.
 The analysis API reports an error when the document has no indexed clauses.
 
+The [research artifacts release](https://github.com/Manideep220305/EdgeLegal/releases/tag/research-artifacts-2026-11-15)
+contains the files used with a fresh checkout.
+
+| Release asset | Where it belongs |
+|---|---|
+| `best_model.pt` | `backend/app/triage_model/checkpoints/current/best_model.pt` |
+| `best_document.pt` | `results/document-nli/best_document.pt`, beside the tracked manifest |
+| `contractnli-splits.zip` | Extract the three JSON files into `backend/data/contractnli/` |
+| `clause-combiner.zip` | Repository root |
+
 For a fresh checkout, create a Python 3.11 environment, install
 `backend/requirements.txt`, and place the fine-tuned `best_model.pt`
 in `backend/app/triage_model/checkpoints/current/`. Set your own
