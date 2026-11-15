@@ -1,0 +1,27 @@
+{
+  "runner_sha256": "9be35b04f67c8eae96a8c25279b8d56ad49944455a0a82502aafc4456661fb4b",
+  "test_sha256": "d1b4c170db11ce33d4da990050bfe79cbb07d6a66bc899679ac5082dbc4de5a0",
+  "diagnostic_sha256": "b6cb1c73193acac1a5e20b0af3f407f64304be2ed8faf7fe59a39902daf9dbd8",
+  "checkpoint_sha256": "7ea45d37671897f04267f5a9e187a28790631362c8231c99757db620da1cbc61",
+  "candidate_sha256": "1fa9dc54a46cb58a1475a604e9975201eb50680abcbb8f63ca13d155ad4c5b0c",
+  "development_sha256": "1560ec37149348c5a860e27949f9019b542ce2851e29d2fdecc56e327c377042",
+  "prompt_source_sha256": "02eefdf6a555aa318c4381a20b91ea5d80bed6b1555a4e01783cd1ba443b8adc",
+  "threshold_rule": "strictly below the sorted development confidence at index floor(0.8*n)",
+  "document_settings": {
+    "epochs": 3,
+    "max_length": 512,
+    "stride": 96,
+    "window_batch": 2,
+    "lr": 2e-05,
+    "evidence_weight": 0.5,
+    "seed": 42,
+    "save_every": 500,
+    "smoke": false
+  },
+  "baseline_threshold": 0.95,
+  "provider": "groq",
+  "provider_model": "openai/gpt-oss-20b",
+  "temperature": 0,
+  "retriever": "BGE cosine with default gap filter",
+  "candidate_threshold": 0.9999042749404907
+}

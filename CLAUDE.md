@@ -1,8 +1,19 @@
 # EdgeLegal — Context for Claude
 
-**Current handoff (2026-11-10).** Start with [EdgeLegal Research Progress](docs/EdgeLegal_Progress.md) for the current experiment sequence, results, and decisions. The dated entries below provide engineering history.
+**Current handoff (2026-11-14).** Start with [EdgeLegal Research Progress](docs/EdgeLegal_Progress.md)
+for the current results, decisions, and training handoff. The dated entries
+below provide engineering history.
 
-The text-based evidence scorer is complete. It gained 22 correct development verdicts over agreement and reduced new errors from six to one, while catching one fewer contradiction. It missed the contradiction guardrail. Live scoring stays at top one and full A/B/C remains paused.
+BM25 leads on development rank-one accuracy (613/1,037). Hybrid reranked
+with MiniLM leads on contradictions caught (49/95). These are offline
+results. Live scoring uses BGE, the top clause, and the 0.95 gate.
+The five-clause classifier reached 60.85% on development. The opt-in document-level
+model reached 86.11% on development and 89.09% on 103 held-out NDAs with
+zero LLM calls. The opt-in model-directed lookup route is implemented.
+The hard-case Groq pilot is complete. Document DeBERTa, top-five RAG,
+fixed lookup, and the agent scored 12, 9, 7, and 6 out of 14. The full
+matched held-out routing comparison remains pending.
+[Experiment report](results/oversized-clause-dev/report.md)
 
 Read this first, before exploring the repo. Last updated 2026-09-27 (evening)
 by a Cowork session doing a full resync: read every file in the repo fresh

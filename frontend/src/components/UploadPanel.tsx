@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { FileUp, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { easeOut, panelSurface } from '@/lib/design';
-import { API_BASE } from '@/lib/api';
+import { API_BASE, documentError } from '@/lib/api';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
 
@@ -36,7 +36,7 @@ export function UploadPanel({ onUploadComplete }: UploadPanelProps) {
       });
 
       if (!response.ok) {
-        throw new Error('Upload failed');
+        throw new Error(await documentError(response, 'Failed to upload document.'));
       }
 
       const data = await response.json();

@@ -10,7 +10,7 @@ import { AppHeader } from '@/components/AppHeader';
 import { WavyBlobs } from '@/components/landing/effects/wavy-blobs';
 import { cn } from '@/lib/utils';
 import { easeOut } from '@/lib/design';
-import { API_BASE } from '@/lib/api';
+import { API_BASE, documentError } from '@/lib/api';
 
 const STEPS = ['Upload', 'Check', 'Report'] as const;
 
@@ -98,6 +98,7 @@ export function AppPage() {
   const [activeResult, setActiveResult] = useState<ReportResult | null>(null);
   const [activeCitation, setActiveCitation] = useState<ReportCitation | null>(null);
   const [isChecking, setIsChecking] = useState(false);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
 
   const currentStep = !file ? 0 : isChecking || activeResult ? 2 : 1;
 
@@ -106,6 +107,7 @@ export function AppPage() {
     setDocId(uploadedDocId);
     setActiveResult(null);
     setActiveCitation(null);
+    setAnalysisError(null);
   };
 
   const handleCheckHypothesis = async (hypothesis: string) => {
@@ -113,6 +115,8 @@ export function AppPage() {
 
     setIsChecking(true);
     setActiveCitation(null);
+    setActiveResult(null);
+    setAnalysisError(null);
 
     try {
       const response = await fetch(`${API_BASE}/analyze`, {
@@ -127,14 +131,14 @@ export function AppPage() {
       });
 
       if (!response.ok) {
-        throw new Error('Analysis failed');
+        throw new Error(await documentError(response, 'Failed to analyze the document. Try again.'));
       }
 
       const result = await response.json();
       setActiveResult(result);
     } catch (error) {
       console.error(error);
-      alert('Failed to analyze hypothesis.');
+      setAnalysisError(error instanceof Error ? error.message : 'Failed to analyze the document.');
     } finally {
       setIsChecking(false);
     }
@@ -163,6 +167,11 @@ export function AppPage() {
           </StepPanel>
 
           <StepPanel active={currentStep === 1} delay={0.12}>
+            {analysisError && (
+              <p role="alert" className="mb-3 rounded-md border border-destructive/40 p-3 text-sm text-foreground">
+                {analysisError}
+              </p>
+            )}
             <HypothesisPanel
               onCheck={handleCheckHypothesis}
               disabled={!file}

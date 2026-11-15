@@ -1,5 +1,7 @@
 # EdgeLegal Report: Items That Cannot Be Generated Automatically
 
+> The document-only benchmark is available. The matched agent and full held-out routing comparisons are pending. [Current evidence](../docs/EdgeLegal_Progress.md).
+
 > Historical snapshot. Use [current research progress](../docs/EdgeLegal_Progress.md) for implementation and experiment status.
 
 This file belongs with `EdgeLegal_Report_Context.md`. It lists everything the Word report needs that Claude cannot produce on its own: things that need your real application running, your personal details, results that do not exist yet, or decisions only you can make. For each item it gives what to do and the text or description that goes in the report meanwhile. In the Word document each of these will appear as a clearly marked placeholder box (caption plus a one-line description) so you can drop the real item in.

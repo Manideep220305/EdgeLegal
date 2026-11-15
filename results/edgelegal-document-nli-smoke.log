@@ -1,0 +1,23 @@
+[{"stream_name":"stdout","time":6.9048550859999995,"data":"Tesla T4 15636037632\n"}
+,{"stream_name":"stdout","time":35.082440347,"data":"2026-11-13 14:48:25 INFO     backend.app.logging_config       configure_logging:151 | Logging configured: console=INFO file=/kaggle/working/edgelegal/logs/edgelegal.log\n"}
+,{"stream_name":"stdout","time":35.176032485,"data":"GPU: Tesla T4, 14.6 GiB\n"}
+,{"stream_name":"stdout","time":35.342475982,"data":"2026-11-13 14:48:25 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.start       | hf_checkpoint='cross-encoder/nli-deberta-v3-base' checkpoint_path='/kaggle/input/datasets/saimanideepkatta/edgelegal-document-nli-inputs/best_model.pt' device='cuda'\n"}
+,{"stream_name":"stdout","time":36.021852817,"data":"2026-11-13 14:48:26 WARNING  huggingface_hub.utils._http      _warn_on_warning_headers:993 | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":36.021854137,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":49.13076104,"data":"\rLoading weights:   0%|          | 0/202 [00:00\u003c?, ?it/s]\rLoading weights: 100%|██████████| 202/202 [00:00\u003c00:00, 2597.35it/s]\n"}
+,{"stream_name":"stdout","time":50.435542954,"data":"2026-11-13 14:48:40 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.done        | hf_checkpoint='cross-encoder/nli-deberta-v3-base' fine_tuned=True device='cuda'\n"}
+,{"stream_name":"stdout","time":54.92045615,"data":"Train 1/2\n"}
+,{"stream_name":"stdout","time":62.662468572,"data":"Dev 1/3\n"}
+,{"stream_name":"stdout","time":67.257521208,"data":"{'epoch': 1, 'train_loss': 4.964811518788338, 'accuracy': 0.0, 'macro_f1': 0.0, 'contradiction_recall': 0.0, 'seconds': 10.618640435999964}\n"}
+,{"stream_name":"stdout","time":81.158053937,"data":"2026-11-13 14:49:11 INFO     backend.app.logging_config       configure_logging:151 | Logging configured: console=INFO file=/kaggle/working/edgelegal/logs/edgelegal.log\n"}
+,{"stream_name":"stdout","time":81.254311312,"data":"GPU: Tesla T4, 14.6 GiB\n"}
+,{"stream_name":"stdout","time":81.445831918,"data":"2026-11-13 14:49:11 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.start       | hf_checkpoint='cross-encoder/nli-deberta-v3-base' checkpoint_path='/kaggle/input/datasets/saimanideepkatta/edgelegal-document-nli-inputs/best_model.pt' device='cuda'\n"}
+,{"stream_name":"stderr","time":83.806371627,"data":"\rLoading weights:   0%|          | 0/202 [00:00\u003c?, ?it/s]\rLoading weights: 100%|██████████| 202/202 [00:00\u003c00:00, 2389.56it/s]\n"}
+,{"stream_name":"stdout","time":85.087107555,"data":"2026-11-13 14:49:15 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.done        | hf_checkpoint='cross-encoder/nli-deberta-v3-base' fine_tuned=True device='cuda'\n"}
+,{"stream_name":"stderr","time":93.006423882,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":93.006465104,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":93.22256648,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":93.222592082,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":93.97425071,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":94.845345688,"data":"[NbConvertApp] Writing 303535 bytes to __results__.html\n"}
+]

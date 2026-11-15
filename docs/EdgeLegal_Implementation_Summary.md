@@ -2,6 +2,8 @@
 
 # EdgeLegal — In-Depth Technical Implementation & Architectural Mapping Guide
 
+> For the verified document model and experimental lookup agent, see [current progress](EdgeLegal_Progress.md).
+
 **Document Classification:** Comprehensive Codebase Reference & Architecture Coverage Report  
 **Target Milestone:** Configuration A (No-Triage RAG Baseline) + Data Ingestion & Evaluation Suite  
 **Document Purpose:** Detailed conceptual, algorithmic, and architectural walkthrough of every implemented Python component in the EdgeLegal system, along with an explicit section-by-section mapping to the project's master documentation.

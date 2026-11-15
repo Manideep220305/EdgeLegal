@@ -24,7 +24,9 @@ from __future__ import annotations
 
 from backend.app.agent.state import AgentState
 from backend.app.triage_model.infer import predict as triage_predict
+from backend.app.vectorstore.bm25 import BM25, terms
 from backend.app.vectorstore.chroma_client import query, gap_filter
+from backend.app.parsing.clause_parser import Clause
 from backend.app.logging_config import get_logger, log_exception, log_step
 
 logger = get_logger(__name__)
@@ -56,6 +58,17 @@ def retrieve_node(state: AgentState) -> dict:
         return {"retrieved_clauses": []}
 
     try:
+        if state.get("retrieval_mode") == "bm25":
+            indexed = collection.get(include=["documents", "metadatas"])
+            clauses = [
+                Clause(cid, text, meta["page_num"], meta["section_heading"])
+                for cid, text, meta in zip(indexed["ids"], indexed["documents"], indexed["metadatas"], strict=True)
+            ]
+            # Clause IDs encode the original document order, the BM25 tie break.
+            clauses.sort(key=lambda clause: int(clause.id.rsplit("_", 1)[1]))
+            ranks = BM25(clauses).rank(terms(hypothesis), {c.id: i for i, c in enumerate(clauses)})
+            clauses.sort(key=lambda clause: ranks.get(clause.id, (float("inf"), 0))[0])
+            return {"retrieved_clauses": clauses[:5]}
         candidates = query(
             collection, hypothesis, k=n_clauses, embedder=embedder, with_scores=True
         )
@@ -86,6 +99,10 @@ def triage_node(state: AgentState) -> dict:
     clauses = state["retrieved_clauses"]
     hypothesis = state["hypothesis"]
     doc_id = state.get("document_id", "?")
+
+    if "document_prediction" in state:
+        prediction = state["document_prediction"]
+        return {"triage_label": prediction["label"], "triage_confidence": prediction["confidence"]}
 
     if not clauses:
         # Nothing survived retrieval — confidently NotMentioned, no LLM call needed.
@@ -153,7 +170,7 @@ def call_llm_node(state: AgentState) -> dict:
     llm_client = state["llm_client"]
     clauses = state["retrieved_clauses"]
     hypothesis = state["hypothesis"]
-    triage_label = state.get("triage_label") or ""
+    triage_label = "" if "document_prediction" in state else (state.get("triage_label") or "")
     doc_id = state.get("document_id", "?")
 
     log_step(logger, "call_llm.start", doc_id=doc_id, n_clauses=len(clauses),

@@ -3,7 +3,9 @@
 **Current research status.** See [EdgeLegal Research Progress](EdgeLegal_Progress.md)
 for the latest decisions and links to experiment artifacts.
 
-Version: 2026-10-01. Status: living document. This is the single place that explains what EdgeLegal is, what it is meant to prove, what is actually built, what the evidence says so far, and what is still open. It is written to be honest first. Where something is unproven, broken, or only partly done, it says so.
+Updated **13 November 2026**. This document explains the app, research
+scope, and results. The progress file records current decisions and handoff
+instructions.
 
 Companion files (each has a different job, see section 15):
 `CLAUDE.md` (working notes for AI sessions), `docs/EdgeLegal_Project_Guide.md` (original scope and design), `researchpaper_claude/` (literature review and paper draft).
@@ -199,7 +201,10 @@ Definition of done (from the Project Guide): classifier trained and calibration 
 - Accuracy 0.9701, macro-F1 0.9391 (macro P/R 0.9305 / 0.9486).
 - F1 per class: Entailment 0.9699, NotMentioned 0.9988, **Contradiction 0.8485**.
 - ECE 0.0285.
-- Caveat: dev premises are gold evidence spans (and, for NotMentioned, a distinctive full-document premise). This is an upper bound, not what the live system sees.
+- The current prepared-input evaluator uses annotated spans for Entailment
+  and Contradiction and document text for Not Mentioned. The saved 97.0%
+  result describes this input condition. Exact original Kaggle preprocessing
+  still needs provenance verification.
 
 ### 10.2 In the real pipeline (20 test documents, 340 pairs, fake LLM so only the classifier runs)
 
@@ -229,9 +234,29 @@ Definition of done (from the Project Guide): classifier trained and calibration 
 
 The September two-contract runs are matched. The separate 20-contract
 classifier diagnostic is exploratory. The later matched 20-contract attempt
-stopped at the quota cap. The November matched development pilot and the
-paired parser evaluation are linked from [current research progress](EdgeLegal_Progress.md).
+stopped at the quota cap. The [November development pilot](../results/groq-pilot-20261110/report.md)
+scored 33/51 for A, 29/51 for B, and 23/51 for C. C accepted 42 cases
+without escalation and got 24 of those wrong.
 The full held-out comparison remains pending.
+
+### 10.6 Paired development experiments
+
+The [experiment report](../results/oversized-clause-dev/report.md) traces
+the parser, evidence visibility, clause scoring, reference lookup, and
+retrieval comparisons on 1,037 development cases. The oversized-clause
+split reduced truncation from 195 cases to one, while raw rank-one
+evidence hits fell from 256 to 218 of 614. Supplying annotated evidence
+corrected 278 of 301 Entailment or Contradiction errors under the default
+parser. Top-three rescue and the stricter override variants exposed a
+trade-off between catching contradictions and preserving correct
+Not Mentioned answers. The train-only text filter got 573/1,037 correct.
+
+With the parser and rank-one DeBERTa fixed, BGE scored 534/1,037
+(51.49%), BM25 613/1,037 (59.11%), Hybrid 574/1,037 (55.35%), and
+reranked Hybrid 604/1,037 (58.24%). BM25 led on overall accuracy and
+reranked Hybrid caught the most contradictions (49/95). The reference
+audit recovered five rank-one evidence misses using one lookup. All
+these paired development experiments used zero Groq calls.
 
 ---
 
@@ -262,8 +287,11 @@ records the overlap and open novelty checks.
 5. **Actually ran the calibration check the gap is about**, first on dev (looks excellent, ECE 0.0285) and then in deployment conditions (fails, ECE 0.440). This is the most research-relevant thing done so far.
 6. Identified two candidates for diagnosis: the prepared versus retrieved input difference and incomplete evidence retrieval.
 7. Ran an exploratory recalibration showing calibration is fixable post hoc but routing usefulness is not.
-8. Drafted the paper skeleton (`researchpaper_claude/paper_draft.md`): sections 5.1 and 5.2 filled, 5.3 and 5.4 pending the matched run.
-9. Scoped a multi-layer extension for the journal paper (section 13).
+8. Ran the paired development diagnostics and retrieval comparisons
+   summarized in section 10.6.
+9. Added the development results and small routing pilot to the
+   [paper draft](../researchpaper_claude/paper_draft.md).
+10. Scoped a multi-layer extension for future work (section 13).
 
 ### 11.5 Brutally honest read on the gap
 
@@ -279,9 +307,9 @@ records the overlap and open novelty checks.
 
 1. **The held-out routing claim is still untested.** The matched development pilot and classifier diagnostics show that the current gate accepts confidently wrong answers.
 2. **The classifier collapses in deployment** (accuracy 0.532, ECE 0.440), likely because training used gold evidence spans and, for NotMentioned, a full-document premise, while deployment feeds one short retrieved clause.
-3. **Top-one evidence can be missing or truncated.** The next diagnostic will distinguish those cases from errors made with visible evidence.
-4. **Dev numbers are inflated** by oracle premises. Do not quote 97% as system accuracy.
-5. **No final held-out routing results exist.** The latest local classifier comparison covers the full development split. The matched Groq pilot covers three development contracts.
+3. **Top-one evidence can be missing or truncated.** The completed visibility diagnostic found 256 raw hits and 222 fully visible hits with the default parser. It also identified 55 errors with a visible span.
+4. **Prepared and retrieved inputs give different scores.** The 97.0% result uses prepared premises. The original retrieved rank-one baseline is 51.49% on the same development cases.
+5. **Matched held-out routing is in progress.** Document-level DeBERTa scored 89.09% across 1,751 held-out cases with zero LLM calls. The development pilot covers three contracts. The [current progress log](EdgeLegal_Progress.md#project-completion-priorities) tracks the full comparison.
 6. **The privacy claim is not currently true.** The interim LLM is hosted. The title's "privacy-preserving" only holds once escalation runs on a local model, and a 3 to 4B local model may be weaker than the 20B hosted one, which would change the accuracy of every escalated case.
 7. **Deviations from the Review-II plan** (LegalBERT, Llama 3 8B or Phi-3, report generation, multi-turn Q&A) must be explained, not hidden.
 8. **Single dataset, NDAs only.** Generalization to other contract types is untested. ContractNLI's size limits generalization.
@@ -294,10 +322,50 @@ records the overlap and open novelty checks.
 
 ### 13.1 Current research sequence
 
-The oversized-clause experiment is complete and remains opt-in. The
-[research handoff](EdgeLegal_Progress.md) records the result and the proposed
-top-one versus top-three development diagnostic. It also records the pause on
-full A/B/C and the conditions for a final held-out comparison.
+BM25 and reranked Hybrid are offline retrieval candidates. The five-clause
+BGE combiner reached 60.85% on development. The selected document-level
+classifier reached 86.11% on development and 89.09% in the zero-call
+held-out run. Its frozen routing policy is being evaluated under the
+[held-out protocol](EdgeLegal_Project_Guide.md#64-proposed-held-out-protocol-2026-11-10).
+The live default remains the fixed 0.95 confidence gate. The
+reference-following agent is an opt-in experiment. Set
+`EDGELEGAL_AGENTIC_RAG=1` to try model-directed lookup on a public
+demo contract. This mode sends the question and selected excerpts to
+Groq. It can follow numbered references, read nearby clauses, or search
+again. It verifies quote text for clickable citations and caps each review
+at three calls and 6,000 excerpt bytes, including repeated excerpts.
+See the [development comparison](EdgeLegal_Progress.md#reference-lookup-and-agentic-rag).
+
+The [project completion priorities](EdgeLegal_Progress.md#project-completion-priorities)
+also track the live app work. The upload API rejects PDFs without
+extractable text and PDFs it cannot open. The UI explains how to retry.
+The analysis API reports an error when the document has no indexed clauses.
+
+For a fresh checkout, create a Python 3.11 environment, install
+`backend/requirements.txt`, and place the fine-tuned `best_model.pt`
+in `backend/app/triage_model/checkpoints/current/`. Set your own
+`GROQ_API_KEYS` in `backend/.env` for escalation. Start the API from
+`backend/` with `python -m uvicorn app.main:app --port 8000`. From
+`frontend/`, run `npm ci` and `npm run dev` with Node 22.12 or later.
+Set `EDGELEGAL_RETRIEVAL_MODE=bm25` in the backend process environment
+to try lexical retrieval. Use the bundled demo NDA to check upload,
+analysis, citation navigation, and history. Hugging Face assets download
+on first use if they are missing from the local cache.
+Existing environments also need to reinstall the requirements before
+trying document-level inference. The pinned tokenizer keeps all
+overlapping windows when a contract exceeds 512 tokens.
+
+For a verified document-level candidate, set
+`EDGELEGAL_DOCUMENT_CHECKPOINT` to the candidate's weights file with
+its training `manifest.json` in the same directory. Set
+`EDGELEGAL_DOCUMENT_THRESHOLD` to `0.9999042749404907` for the frozen
+epoch-three checkpoint (`results/document-nli/best_document.pt`). The
+checkpoint is stored separately from Git. Its SHA-256 is
+`1fa9dc54a46cb58a1475a604e9975201eb50680abcbb8f63ca13d155ad4c5b0c`.
+Use BGE retrieval for the escalation context to match the held-out
+protocol and set `GROQ_MODEL=openai/gpt-oss-20b` in `backend/.env` to
+match its provider model. Document-level inference reads the original
+uploaded PDF.
 
 ### 13.2 Future work: multi-layer contradiction detection (journal-paper scope)
 
@@ -359,7 +427,7 @@ Two import roots exist and must not be mixed:
 | `CLAUDE.md` | Detailed engineering state, gotchas, decisions, for AI sessions | Long, dense, edited by several sessions, not a readable document |
 | `docs/EdgeLegal_Project_Guide.md` | Original scope, design, experiment plan, definition of done | Written before results exist |
 | `researchpaper_claude/literature_review.md`, `notes/` | Research gap and prior art | One paper still unread |
-| `researchpaper_claude/paper_draft.md` | Paper structure and results written so far | 5.3, 5.4 pending |
+| `researchpaper_claude/paper_draft.md` | Development results and preliminary routing pilot | Held-out routing results pending |
 | `docs/EdgeLegal_Implementation_Summary.md`, `technical_architecture.md`, `architecture123.md` | History only | Outdated, do not use for status |
 | [EdgeLegal Research Progress](EdgeLegal_Progress.md) | Current implementation, experiments, decisions, and next step | Update after each research milestone |
 

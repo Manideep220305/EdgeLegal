@@ -3,6 +3,7 @@
 **Citation:** "LegalWiz: A Multi-Agent Generation Framework for Contradiction Detection
 in Legal Documents." arXiv, October 2025.
 - arXiv: https://arxiv.org/abs/2510.03418
+- Verified rule in [v2, §3.2](https://arxiv.org/html/2510.03418v2#S3.SS2) on 2026-11-10.
 
 ## Why this is the most important paper in this folder
 
@@ -10,7 +11,8 @@ Its pipeline already does the literal core mechanism your project is built aroun
 **an NLI classifier's confidence gates whether a case is accepted directly or escalated
 to an LLM.** Specifically, its "Contradiction Mining Agent" runs staged filtering —
 semantic similarity, then NLI classification (facebook/bart-large-mnli), then LLM
-judgment (GPT-4o) — and pairs with NLI confidence ≤ 0.7 are escalated to the LLM, with
+judgment (GPT-4o). Section 3.2 escalates pairs predicted as contradictions or with
+NLI confidence ≤ 0.7, with
 hybrid scoring weights derived from the model's own confidence. That is your triage
 mechanism, already published, one year ago.
 
@@ -19,7 +21,7 @@ mechanism, already published, one year ago.
 1. **Dataset:** LegalWiz evaluates on 50 *synthetic* documents it generates itself (a
    fictional aerospace company, 6 injected contradiction types), not on ContractNLI or
    any established public benchmark. EdgeLegal evaluates on the standard, independently-
-   annotated ContractNLI test split — directly comparable to prior published baselines.
+   annotated ContractNLI benchmark. Its final matched test comparison is pending.
 2. **Purpose:** LegalWiz's goal is generating a *stress-test benchmark* for RAG systems
    (contradiction injection + detection as a data-generation pipeline). EdgeLegal's goal
    is evaluating whether the *triage decision itself* is trustworthy and worth the added

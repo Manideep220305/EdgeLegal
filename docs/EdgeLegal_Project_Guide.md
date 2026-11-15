@@ -1,14 +1,22 @@
 # EdgeLegal: Confidence-Routed Legal Contradiction Detection
+
+**November implementation update.** Whole-contract DeBERTa is the leading verified classifier. The opt-in lookup agent has a development protocol that measures verdicts, citations, and text sent to Groq. See the [current research status](EdgeLegal_Progress.md#reference-lookup-and-agentic-rag).
 ## Project Guide — Scoped Implementation & Research Plan
 
-**Plan update (2026-11-10).** This guide preserves the original scope and
-definition of done. [Current research progress](EdgeLegal_Progress.md) records
-completed pilots, the parser experiment, and the decision to pause full A/B/C
-until the development evidence diagnostic. Config B uses general NLI
-DeBERTa in the implemented runner. Section 6 records the original design.
+**Plan update (2026-11-13).** This guide preserves the original scope and
+definition of done. Development work now includes the completed parser,
+evidence visibility, override, reference lookup, and retrieval comparisons.
+BM25 and reranked Hybrid are candidates for comparison with the pending
+multi-clause classifier. Full A/B/C remains paused until a candidate,
+provider, and scoring protocol are selected. The implemented Config B
+uses general NLI DeBERTa. See [current research progress](EdgeLegal_Progress.md)
+and the [experiment report](../results/oversized-clause-dev/report.md).
 ---
 
 ## 1. Problem Statement
+
+For the current implementation, reproducible run artifacts, and live
+setup, see [project completion progress](EdgeLegal_Progress.md#project-completion-priorities).
 
 Legal contract review — checking whether clauses within a contract (or against standard obligations) are consistent, contradictory, or silent — is manual, slow, and expensive. Retrieval-Augmented Generation (RAG) systems built on Large Language Models (LLMs) can automate this, but a pure LLM-driven pipeline has a specific, measurable inefficiency: **every single clause comparison, including trivially obvious ones, requires a full LLM inference call.** On long contracts, or when checking many clauses against many standard obligations, this cost compounds and dominates system latency — especially in privacy-preserving deployments that require a local (non-cloud) LLM, where compute is limited by design.
 
@@ -195,6 +203,57 @@ All three run on the **same test split**, same confidence threshold selection pr
 - If Configuration C does not meaningfully outperform Configuration B, that is a legitimate, reportable finding — it suggests off-the-shelf checkpoints may already be sufficient, which is itself useful information.
 - If the triage layer (B or C) does not reduce LLM calls without hurting accuracy relative to A, that supports recommending the simpler no-triage architecture — also a legitimate finding, not a failure.
 - Do not tune the confidence threshold after seeing test-split results. Do not cherry-pick favorable runs. Report variance, not just best-case numbers.
+
+---
+
+### 6.4 Proposed held-out protocol (2026-11-10)
+
+**Freeze the experiment before scoring.** Use the 423 training contracts for
+fitting and the 61 development contracts for choosing the candidate, its
+features, and its routing policy. Record the commit, checkpoint, retriever,
+prompt, LLM model and provider, decoding settings, and evaluation script
+before starting. The November run freezes epoch-three document-level
+DeBERTa and Groq `openai/gpt-oss-20b` at temperature zero. The
+[matched run manifest](../results/held-out-routing/manifest.json) records
+the checkpoint, prompt source, and threshold. The
+[progress log](EdgeLegal_Progress.md#project-completion-priorities)
+records the document-only result and provider-run status.
+
+**Evaluation cohort.** Use the 103 remaining test contracts (1,751 pairs)
+for the primary comparison. Exclude the 20 contract IDs in the saved
+[September diagnostic](../results/C_finetuned_triage_20260927T143308+0000.json).
+Report results for those 20 separately if run. Disclose that an earlier
+retrieval-only diagnostic covered the full official split, so the primary
+cohort was previously used for retrieval inspection.
+
+**Comparison.** Run the same retriever, prompt, and LLM on the same cases.
+Use no classifier hint in the LLM prompt. Compare A (always call the LLM),
+C (fine-tuned classifier with the existing 0.95 gate), and the proposed
+router. Include B (off-the-shelf DeBERTa NLI with the same 0.95 gate) for
+the original three-way comparison. To isolate routing, also compare C's
+confidence ranking with the proposed routing score at a fixed budget of
+at most 80% of cases (1,400 calls on the primary cohort). Rank cases for
+escalation without their gold labels. Break ties by contract ID and
+hypothesis ID. Use the same underlying classifier verdict for both rules
+in that matched-budget comparison. If the candidate changes the verdict
+model as well, report that separately as an end-to-end comparison.
+
+**Calls and failures.** Save one LLM verdict per unique prompt and settings
+and reuse it across arms for the primary quality comparison. Report logical
+calls per arm separately from actual requests, retries, and token use.
+Cache hits cannot stand in for live latency. Count unresolved predictions
+as errors in the primary comparison and report failures by arm.
+
+**Decision criteria.** Report accuracy, contradiction recall, gold
+Not Mentioned recall, and call rate with raw counts. Use paired 95%
+bootstrap intervals by resampling entire contracts, preserving paired
+predictions. For a claim that the candidate preserves accuracy while
+saving calls, require at least 20% fewer logical calls than A and a lower
+confidence bound for the candidate-minus-A accuracy difference above −2
+percentage points. Also require the point estimate for contradiction
+recall to be no more than 5 percentage points below A and report its interval.
+These are proposed project thresholds. Lock them before the held-out run.
+If the data do not meet them, report the measured trade-off.
 
 ---
 

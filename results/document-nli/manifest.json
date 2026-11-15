@@ -1,0 +1,26 @@
+{
+  "settings": {
+    "epochs": 3,
+    "max_length": 512,
+    "stride": 96,
+    "window_batch": 2,
+    "lr": 2e-05,
+    "evidence_weight": 0.5,
+    "seed": 42,
+    "save_every": 500,
+    "smoke": false
+  },
+  "backbone": "cross-encoder/nli-deberta-v3-base",
+  "checkpoint_sha256": "7ea45d37671897f04267f5a9e187a28790631362c8231c99757db620da1cbc61",
+  "train_sha256": "3bbd02df4cc256c2322e862039c52e35ddb776af4dc0e013c3c5f27da6458d2e",
+  "dev_sha256": "ec35aa76c04debfba8e4bc813a3eacde1727a03871cff71c8f60b4dbb37cf15d",
+  "torch": "2.11.0+cu130",
+  "transformers": "5.20.2",
+  "train_examples": 7191,
+  "dev_examples": 1037,
+  "source_sha256": "5f8fd74e71c60cda3616ebacca34188b2895c34400a89058af40855a1f145809",
+  "selection_metric": [
+    "macro_f1",
+    "contradiction_recall"
+  ]
+}

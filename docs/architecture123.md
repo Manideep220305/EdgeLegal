@@ -1,5 +1,7 @@
 # EdgeLegal — Architecture & Function Outline
 
+> The current implementation includes a document classifier and a bounded, opt-in evidence lookup agent. See the [current app and experiment status](EdgeLegal_Progress.md#reference-lookup-and-agentic-rag).
+
 > Historical snapshot. Use [current research progress](EdgeLegal_Progress.md) for implementation and experiment status.
 
 Confidence-routed legal contradiction detection. One job per component — the

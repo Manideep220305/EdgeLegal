@@ -32,9 +32,10 @@ front of an LLM: confident cases are accepted directly, uncertain ones are
 escalated. The goal is fewer LLM calls without losing accuracy, and only if
 the classifier's confidence is actually calibrated.
 
-Do not claim the system runs locally / on the edge. It is planned to be
-deployed as a hosted web app (frontend on Vercel, backend on Render) and
-currently uses a cloud LLM (Groq) in the live app.
+The document classifier can run locally. Hosted deployment is a product
+plan. Cloud review sends the question and selected excerpts to Groq.
+An opt-in experimental mode lets the model request more evidence and
+shows which PDF pages it looked up.
 
 ## Operating Context
 
@@ -50,8 +51,10 @@ currently uses a cloud LLM (Groq) in the live app.
 - Triage classifier: DeBERTa-v3-base NLI cross-encoder, fine-tuned, with a
   frozen confidence threshold for escalation.
 - Retrieval over parsed clauses, LLM reasoning for escalated cases.
-- The app and research runner share the routing graph. Matched A/B/C pilots
-  exist, and the final held-out comparison is pending.
+- The default app uses confidence routing. The whole-contract model scored
+  89.09% on the 103-contract benchmark cohort with zero LLM calls. The
+  hard-case agent pilot is complete and the matched held-out routing
+  comparison is pending. The agent remains experimental.
   See [current research progress](docs/EdgeLegal_Progress.md).
 
 ## Evidence on Hand

@@ -1,0 +1,59 @@
+{
+  "source": "Extracted after the local Chromium demo from its isolated API log and saved SQLite history.",
+  "pdf": "demo_contract.pdf",
+  "hypothesis": "This Agreement shall be governed by the laws of the State of Delaware.",
+  "saved_reports": 1,
+  "verdict": {
+    "label": "Entailment",
+    "reasoning": "Resolved directly by the triage classifier (100% confidence, at or above the 0% threshold) \u2014 no LLM call needed.",
+    "cited_clauses": [
+      {
+        "id": "window_17",
+        "text": "17. Governing Law\nThis Agreement shall be governed by the laws of the State of Delaware.",
+        "page": 2,
+        "bbox": [
+          100.0,
+          545.02001953125,
+          481.5158996582031,
+          583.5880126953125
+        ]
+      }
+    ],
+    "source": "classifier",
+    "confidence": 0.9998939037322998,
+    "triage": {
+      "label": "Entailment",
+      "confidence": 0.9998939037322998,
+      "threshold": 0.0,
+      "decision": "accept"
+    }
+  },
+  "observed_server_requests": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/upload",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/history",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/analyze",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/history",
+      "status": 200
+    }
+  ],
+  "browser_test_detail": "The browser-simulated 503 was intercepted in Playwright and does not appear in the server log."
+}

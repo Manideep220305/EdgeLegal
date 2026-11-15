@@ -1,5 +1,7 @@
 # EdgeLegal Major Project Report: Blueprint and Context
 
+> For a new report, cite the [document-only and agent results](../docs/EdgeLegal_Progress.md) and describe what text goes to Groq.
+
 > Historical snapshot. Use [current research progress](../docs/EdgeLegal_Progress.md) for implementation and experiment status.
 
 Use this file as the instruction set for generating the EdgeLegal Word report. It describes (1) how the reference report is structured and formatted, (2) the exact EdgeLegal index to follow, section by section, with the content each section must carry and where that content comes from, (3) every diagram, table and chart to produce, and (4) the writing and honesty rules.

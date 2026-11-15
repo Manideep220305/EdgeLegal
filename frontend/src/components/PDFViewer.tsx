@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, FileX } from 'lucide-react';
@@ -9,8 +9,7 @@ import { easeOut, panelSurface } from '@/lib/design';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-// Set worker path to local or CDN
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 interface PDFViewerProps {
   file: File | null;
@@ -48,7 +47,6 @@ export function PDFViewer({ file, activeCitation }: PDFViewerProps) {
     }
   }, [activeCitation]);
 
-  const fileUrl = useMemo(() => (file ? URL.createObjectURL(file) : ''), [file]);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages);
@@ -127,7 +125,7 @@ export function PDFViewer({ file, activeCitation }: PDFViewerProps) {
       {/* Viewer Area */}
       <div ref={viewerRef} className="relative flex-1 overflow-auto bg-muted/40 p-4">
         <Document
-          file={fileUrl}
+          file={file}
           onLoadSuccess={onDocumentLoadSuccess}
           loading={
             <div role="status" aria-label="Loading PDF">

@@ -19,6 +19,8 @@ class AgentState(TypedDict, total=False):
     llm_client: Any          # llm.ollama_client.OllamaClient
     threshold: float         # frozen confidence threshold (unused when skip_triage)
     skip_triage: bool        # Config A: retrieve -> LLM directly, no triage run, no hint
+    retrieval_mode: str      # Optional live override; default is BGE
+    document_prediction: dict  # Optional verdict and source excerpt from whole-document inference
 
     # ── Written by retrieve_node ────────────────────────────────────────────
     retrieved_clauses: list   # list[parsing.clause_parser.Clause]

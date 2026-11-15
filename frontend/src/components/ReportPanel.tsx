@@ -234,7 +234,7 @@ function ResultState({ result, onCitationClick }: { result: ReportResult; onCita
               title={
                 result.source === 'classifier'
                   ? 'Resolved directly by the triage classifier — no LLM call needed'
-                  : 'Escalated to the LLM for deeper reasoning'
+                  : 'Reviewed by the LLM'
               }
             >
               {result.source === 'classifier' ? (
@@ -245,7 +245,7 @@ function ResultState({ result, onCitationClick }: { result: ReportResult; onCita
               ) : (
                 <>
                   <Brain className="h-3 w-3" />
-                  LLM-verified
+                  LLM review
                 </>
               )}
             </span>

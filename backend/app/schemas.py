@@ -42,8 +42,7 @@ class ReportResult(BaseModel):
         default=None,
         description="The routing agent's own step, for the 'how this was decided' panel. "
                     "Present whenever the request went through the agent, regardless of "
-                    "which branch (accept/escalate) it took; None when no agent ran "
-                    "(e.g. document had no extractable clauses).",
+                    "which branch (accept/escalate) it took; optional for saved reports.",
     )
 
 class HistoryItem(BaseModel):

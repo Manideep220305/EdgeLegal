@@ -1,0 +1,54 @@
+{
+  "epoch": 3,
+  "correct": 893,
+  "cases": 1037,
+  "accuracy": 0.8611378977820636,
+  "macro_f1": 0.8112963050772471,
+  "correct_by_class": {
+    "Entailment": 473,
+    "Contradiction": 71,
+    "NotMentioned": 349
+  },
+  "class_support": {
+    "Entailment": 519,
+    "Contradiction": 95,
+    "NotMentioned": 423
+  },
+  "false_mentions": 74,
+  "evidence_diagnostic": {
+    "annotated_cases": 614,
+    "annotated_span_in_top_window": 568,
+    "wrong_with_span_in_top_window": 57,
+    "wrong_without_span_in_top_window": 13
+  },
+  "paired_comparisons": {
+    "five_clause": {
+      "fixed": 308,
+      "regressed": 46,
+      "accuracy_delta_pp": 25.265188042430086,
+      "accuracy_delta_pp_95ci": [
+        21.697203471552555,
+        28.92960462873674
+      ]
+    },
+    "bm25": {
+      "fixed": 338,
+      "regressed": 58,
+      "accuracy_delta_pp": 27.000964320154292,
+      "accuracy_delta_pp_95ci": [
+        22.66152362584378,
+        31.436837029893926
+      ]
+    },
+    "reranked_hybrid": {
+      "fixed": 336,
+      "regressed": 47,
+      "accuracy_delta_pp": 27.868852459016395,
+      "accuracy_delta_pp_95ci": [
+        24.011571841851495,
+        31.822565091610414
+      ]
+    }
+  },
+  "candidate_passes": true
+}

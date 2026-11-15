@@ -1,8 +1,8 @@
 # Agentic / tool-use retrieval papers (grounding for the cross-reference retrieval feature)
 
-Relevant if the cross-reference retrieval agent feature discussed earlier gets built
-(an LLM autonomously issuing a follow-up retrieval call when a clause references another
-section it hasn't seen, e.g. "Except as provided in Section 4...").
+The opt-in lookup agent can follow a numbered reference, read adjacent
+clauses, or issue another keyword search. Its [development comparison](../../docs/EdgeLegal_Progress.md#reference-lookup-and-agentic-rag)
+uses ordinary RAG and a deterministic lookup policy as controls.
 
 ## ReAct
 Shunyu Yao et al. "ReAct: Synergizing Reasoning and Acting in Language Models." ICLR 2023.
@@ -27,9 +27,6 @@ Already covered in note 02 (LLM cascades) — also directly relevant here as the
 small-classifier-decides-retrieval-strategy pattern.
 
 ## How to use these
-If you build the cross-reference retrieval feature, cite ReAct for the general
-tool-use-agent framing and Self-RAG for the "model decides it needs more context"
-framing specifically. Keep the actual implementation simple (a conditional second
-retrieval call keyed on detecting a cross-reference pattern like "Section \d+" in the
-clause text) — you don't need to reproduce either paper's full training setup, just
-their conceptual framing for how to describe the feature honestly in the paper.
+Cite ReAct for interleaving model decisions and tool calls, and Self-RAG
+for deciding when more evidence is needed. EdgeLegal uses an existing LLM
+in a bounded lookup loop. Use the matched pilot to assess its contribution.

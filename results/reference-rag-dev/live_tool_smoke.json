@@ -1,0 +1,67 @@
+{
+  "label": "Entailment",
+  "citations": [
+    {
+      "id": "start",
+      "quote": "The Receiving Party shall not disclose Confidential Information to outside persons except under Section 8. The exception controls even if other provisions are inconsistent."
+    },
+    {
+      "id": "exception",
+      "quote": "The Receiving Party may disclose Confidential Information to outside auditors who have signed an NDA."
+    }
+  ],
+  "seen": [
+    "start",
+    "exception"
+  ],
+  "contract_bytes": 445,
+  "trace": [
+    {
+      "sent_clause_ids": [
+        "start"
+      ],
+      "contract_bytes": 172,
+      "usage": {
+        "completion_tokens": 454,
+        "prompt_tokens": 280,
+        "total_tokens": 734,
+        "completion_time": 0.543746169,
+        "completion_tokens_details": {
+          "reasoning_tokens": 407
+        },
+        "prompt_time": 0.016369607,
+        "prompt_tokens_details": null,
+        "queue_time": 0.316595265,
+        "total_time": 0.560115776
+      },
+      "action": {
+        "tool": "search",
+        "value": "Section 8 outside auditor NDA"
+      },
+      "why": "Need to verify if Section\u202f8 permits disclosure to an outside auditor who has signed an NDA",
+      "found": [
+        "exception"
+      ]
+    },
+    {
+      "sent_clause_ids": [
+        "start",
+        "exception"
+      ],
+      "contract_bytes": 273,
+      "usage": {
+        "completion_tokens": 236,
+        "prompt_tokens": 300,
+        "total_tokens": 536,
+        "completion_time": 0.258157902,
+        "completion_tokens_details": {
+          "reasoning_tokens": 158
+        },
+        "prompt_time": 0.016875161,
+        "prompt_tokens_details": null,
+        "queue_time": 0.282966821,
+        "total_time": 0.275033063
+      }
+    }
+  ]
+}

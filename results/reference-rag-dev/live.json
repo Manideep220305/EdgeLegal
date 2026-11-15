@@ -1,0 +1,1222 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "contract_byte_cap": 6000,
+  "call_cap": 3,
+  "planned_cases": 11,
+  "summary": {
+    "top_k": {
+      "cases": 9,
+      "annotated": 6,
+      "any_evidence": 6,
+      "all_evidence": 6,
+      "correct": 4,
+      "unresolved": 4,
+      "contradictions_correct": 2,
+      "contradiction_cases": 3,
+      "calls": 9,
+      "contract_bytes": 37216,
+      "calls_with_lookup": 0,
+      "citation_cases_with_span_overlap": 4,
+      "false_mentions": 1
+    },
+    "fixed_reference": {
+      "cases": 9,
+      "annotated": 6,
+      "any_evidence": 6,
+      "all_evidence": 6,
+      "correct": 5,
+      "unresolved": 2,
+      "contradictions_correct": 3,
+      "contradiction_cases": 3,
+      "calls": 9,
+      "contract_bytes": 37191,
+      "calls_with_lookup": 0,
+      "citation_cases_with_span_overlap": 5,
+      "false_mentions": 1
+    },
+    "agent": {
+      "cases": 9,
+      "annotated": 6,
+      "any_evidence": 3,
+      "all_evidence": 3,
+      "correct": 5,
+      "unresolved": 4,
+      "contradictions_correct": 1,
+      "contradiction_cases": 3,
+      "calls": 9,
+      "contract_bytes": 8502,
+      "calls_with_lookup": 0,
+      "citation_cases_with_span_overlap": 3,
+      "false_mentions": 0
+    }
+  },
+  "deberta_correct": 9,
+  "rows": [
+    {
+      "doc_id": 70,
+      "hyp_id": "nda-13",
+      "gold": "NotMentioned",
+      "hypothesis": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+      "has_reference": false,
+      "span_count": 0,
+      "arms": {
+        "top_k": {
+          "label": null,
+          "citations": [
+            {
+              "id": "clause_0000",
+              "quote": "I understand that access to health information created, received, or maintained by FAU or its affiliates is limited to those who have a valid business, medical, or professional need to know the information."
+            }
+          ],
+          "seen": [
+            "clause_0001",
+            "clause_0000",
+            "clause_0002",
+            "clause_0003"
+          ],
+          "contract_bytes": 5060,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001",
+                "clause_0000",
+                "clause_0002",
+                "clause_0003"
+              ],
+              "contract_bytes": 5060,
+              "usage": {
+                "completion_tokens": 711,
+                "prompt_tokens": 1200,
+                "total_tokens": 1911,
+                "completion_time": 0.827582314,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 640
+                },
+                "prompt_time": 0.137424772,
+                "prompt_tokens_details": null,
+                "queue_time": 0.380884133,
+                "total_time": 0.965007086
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "fixed_reference": {
+          "label": null,
+          "citations": [
+            {
+              "id": "clause_0000",
+              "quote": "I understand that access to health information created, received, or maintained by FAU or its affiliates is limited to those who have a valid business, medical, or professional need to know the information."
+            }
+          ],
+          "seen": [
+            "clause_0001",
+            "clause_0000",
+            "clause_0002",
+            "clause_0003"
+          ],
+          "contract_bytes": 5060,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001",
+                "clause_0000",
+                "clause_0002",
+                "clause_0003"
+              ],
+              "contract_bytes": 5060,
+              "usage": {
+                "completion_tokens": 711,
+                "prompt_tokens": 1200,
+                "total_tokens": 1911,
+                "completion_time": 0.827582314,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 640
+                },
+                "prompt_time": 0.137424772,
+                "prompt_tokens_details": null,
+                "queue_time": 0.380884133,
+                "total_time": 0.965007086
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "agent": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0001"
+          ],
+          "contract_bytes": 1945,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001"
+              ],
+              "contract_bytes": 1945,
+              "usage": {
+                "completion_tokens": 328,
+                "prompt_tokens": 629,
+                "total_tokens": 957,
+                "completion_time": 0.350755116,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 308
+                },
+                "prompt_time": 0.033934169,
+                "prompt_tokens_details": null,
+                "queue_time": 0.368133437,
+                "total_time": 0.384689285
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "NotMentioned"
+    },
+    {
+      "doc_id": 44,
+      "hyp_id": "nda-1",
+      "gold": "NotMentioned",
+      "hypothesis": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+      "has_reference": false,
+      "span_count": 0,
+      "arms": {
+        "top_k": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0001",
+              "quote": "1. \u201cConfidential Information\u201d shall mean all information, whether communicated in oral, written, electronic or other form, furnished by BOMI or prepared by Attendee during the Testing Period, including, but not limited to, answers and notes made by Attendee during the Testing Period, any test questions and answers, any accompanying Test materials and like information, and any and all other Test information of, or provided by, BOMI."
+            }
+          ],
+          "seen": [
+            "clause_0002",
+            "clause_0008",
+            "clause_0001",
+            "clause_0005",
+            "clause_0003"
+          ],
+          "contract_bytes": 3139,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002",
+                "clause_0008",
+                "clause_0001",
+                "clause_0005",
+                "clause_0003"
+              ],
+              "contract_bytes": 3139,
+              "usage": {
+                "completion_tokens": 386,
+                "prompt_tokens": 844,
+                "total_tokens": 1230,
+                "completion_time": 0.404494594,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 267
+                },
+                "prompt_time": 0.065746604,
+                "prompt_tokens_details": null,
+                "queue_time": 0.369008922,
+                "total_time": 0.470241198
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "fixed_reference": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0001",
+              "quote": "1. \u201cConfidential Information\u201d shall mean all information, whether communicated in oral, written, electronic or other form, furnished by BOMI or prepared by Attendee during the Testing Period, including, but not limited to, answers and notes made by Attendee during the Testing Period, any test questions and answers, any accompanying Test materials and like information, and any and all other Test information of, or provided by, BOMI."
+            }
+          ],
+          "seen": [
+            "clause_0002",
+            "clause_0008",
+            "clause_0001",
+            "clause_0005",
+            "clause_0003"
+          ],
+          "contract_bytes": 3139,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002",
+                "clause_0008",
+                "clause_0001",
+                "clause_0005",
+                "clause_0003"
+              ],
+              "contract_bytes": 3139,
+              "usage": {
+                "completion_tokens": 386,
+                "prompt_tokens": 844,
+                "total_tokens": 1230,
+                "completion_time": 0.404494594,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 267
+                },
+                "prompt_time": 0.065746604,
+                "prompt_tokens_details": null,
+                "queue_time": 0.369008922,
+                "total_time": 0.470241198
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "agent": {
+          "label": "NotMentioned",
+          "citations": [],
+          "seen": [
+            "clause_0002"
+          ],
+          "contract_bytes": 696,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002"
+              ],
+              "contract_bytes": 696,
+              "usage": {
+                "completion_tokens": 221,
+                "prompt_tokens": 392,
+                "total_tokens": 613,
+                "completion_time": 0.247255713,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 201
+                },
+                "prompt_time": 0.021471841,
+                "prompt_tokens_details": null,
+                "queue_time": 0.284917436,
+                "total_time": 0.268727554
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "NotMentioned"
+    },
+    {
+      "doc_id": 63,
+      "hyp_id": "nda-15",
+      "gold": "Entailment",
+      "hypothesis": "Agreement shall not grant Receiving Party any right to Confidential Information.",
+      "has_reference": false,
+      "span_count": 2,
+      "arms": {
+        "top_k": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0008",
+              "quote": "Nothing contained in this Agreement shall be construed as granting or conferring to Receiving Party or any of its Representatives any rights by license or otherwise in any Confidential Information, or under any trademark, patent, patent application, design work, copyright, trade secret or any other property right now owned or hereafter owned or controlled by Disclosing Party."
+            }
+          ],
+          "seen": [
+            "clause_0008",
+            "clause_0015",
+            "clause_0006",
+            "clause_0010",
+            "clause_0003"
+          ],
+          "contract_bytes": 4056,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0008",
+                "clause_0015",
+                "clause_0006",
+                "clause_0010",
+                "clause_0003"
+              ],
+              "contract_bytes": 4056,
+              "usage": {
+                "completion_tokens": 551,
+                "prompt_tokens": 976,
+                "total_tokens": 1527,
+                "completion_time": 0.627465903,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 452
+                },
+                "prompt_time": 0.052131798,
+                "prompt_tokens_details": null,
+                "queue_time": 0.285687178,
+                "total_time": 0.679597701
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 2
+        },
+        "fixed_reference": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0008",
+              "quote": "Nothing contained in this Agreement shall be construed as granting or conferring to Receiving Party or any of its Representatives any rights by license or otherwise in any Confidential Information, or under any trademark, patent, patent application, design work, copyright, trade secret or any other property right now owned or hereafter owned or controlled by Disclosing Party."
+            }
+          ],
+          "seen": [
+            "clause_0008",
+            "clause_0015",
+            "clause_0006",
+            "clause_0010",
+            "clause_0003"
+          ],
+          "contract_bytes": 4056,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0008",
+                "clause_0015",
+                "clause_0006",
+                "clause_0010",
+                "clause_0003"
+              ],
+              "contract_bytes": 4056,
+              "usage": {
+                "completion_tokens": 551,
+                "prompt_tokens": 976,
+                "total_tokens": 1527,
+                "completion_time": 0.627465903,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 452
+                },
+                "prompt_time": 0.052131798,
+                "prompt_tokens_details": null,
+                "queue_time": 0.285687178,
+                "total_time": 0.679597701
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 2
+        },
+        "agent": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0008",
+              "quote": "Nothing contained in this Agreement shall be construed as granting or conferring to Receiving Party or any of its Representatives any rights by license or otherwise in any Confidential Information, or under any trademark, patent, patent application, design work, copyright, trade secret or any other property right now owned or hereafter owned or controlled by Disclosing Party."
+            }
+          ],
+          "seen": [
+            "clause_0008"
+          ],
+          "contract_bytes": 551,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0008"
+              ],
+              "contract_bytes": 551,
+              "usage": {
+                "completion_tokens": 199,
+                "prompt_tokens": 347,
+                "total_tokens": 546,
+                "completion_time": 0.208084151,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 100
+                },
+                "prompt_time": 0.025297323,
+                "prompt_tokens_details": null,
+                "queue_time": 0.317286993,
+                "total_time": 0.233381474
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 2
+        }
+      },
+      "deberta": "Entailment"
+    },
+    {
+      "doc_id": 7,
+      "hyp_id": "nda-8",
+      "gold": "Entailment",
+      "hypothesis": "Receiving Party shall notify Disclosing Party in case Receiving Party is required by law, regulation or judicial process to disclose any Confidential Information.",
+      "has_reference": false,
+      "span_count": 1,
+      "arms": {
+        "top_k": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0009",
+              "quote": "2.3 Notwithstanding the foregoing, the Recipient shall be entitled to make any disclosure required by law of the other party's Confidential Information, but shall give the other party not less than two (2) business days' notice of such disclosure and shall consult with the Discloser prior to such disclosure with a view to avoiding such disclosure if legally possible."
+            }
+          ],
+          "seen": [
+            "clause_0009",
+            "clause_0012",
+            "clause_0004",
+            "clause_0008"
+          ],
+          "contract_bytes": 5817,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0009",
+                "clause_0012",
+                "clause_0004",
+                "clause_0008"
+              ],
+              "contract_bytes": 5817,
+              "usage": {
+                "completion_tokens": 585,
+                "prompt_tokens": 1373,
+                "total_tokens": 1958,
+                "completion_time": 0.690965692,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 482
+                },
+                "prompt_time": 0.082736838,
+                "prompt_tokens_details": null,
+                "queue_time": 0.0478274,
+                "total_time": 0.77370253
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "fixed_reference": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0009",
+              "quote": "2.3 Notwithstanding the foregoing, the Recipient shall be entitled to make any disclosure required by law of the other party's Confidential Information, but shall give the other party not less than two (2) business days' notice of such disclosure and shall consult with the Discloser prior to such disclosure with a view to avoiding such disclosure if legally possible."
+            }
+          ],
+          "seen": [
+            "clause_0009",
+            "clause_0012",
+            "clause_0004",
+            "clause_0008"
+          ],
+          "contract_bytes": 5817,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0009",
+                "clause_0012",
+                "clause_0004",
+                "clause_0008"
+              ],
+              "contract_bytes": 5817,
+              "usage": {
+                "completion_tokens": 585,
+                "prompt_tokens": 1373,
+                "total_tokens": 1958,
+                "completion_time": 0.690965692,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 482
+                },
+                "prompt_time": 0.082736838,
+                "prompt_tokens_details": null,
+                "queue_time": 0.0478274,
+                "total_time": 0.77370253
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "agent": {
+          "label": "Entailment",
+          "citations": [
+            {
+              "id": "clause_0009",
+              "quote": "2.3 Notwithstanding the foregoing, the Recipient shall be entitled to make any disclosure required by law of the other party's Confidential Information, but shall give the other party not less than two (2) business days' notice of such disclosure and shall consult with the Discloser prior to such disclosure with a view to avoiding such disclosure if legally possible."
+            }
+          ],
+          "seen": [
+            "clause_0009"
+          ],
+          "contract_bytes": 1199,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0009"
+              ],
+              "contract_bytes": 1199,
+              "usage": {
+                "completion_tokens": 507,
+                "prompt_tokens": 485,
+                "total_tokens": 992,
+                "completion_time": 0.572922742,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 404
+                },
+                "prompt_time": 0.02451973,
+                "prompt_tokens_details": null,
+                "queue_time": 0.242199374,
+                "total_time": 0.597442472
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        }
+      },
+      "deberta": "Entailment"
+    },
+    {
+      "doc_id": 152,
+      "hyp_id": "nda-20",
+      "gold": "Contradiction",
+      "hypothesis": "Receiving Party may retain some Confidential Information even after the return or destruction of Confidential Information.",
+      "has_reference": false,
+      "span_count": 1,
+      "arms": {
+        "top_k": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0008",
+              "quote": "All products and any residue thereof remaining after the tests are completed shall returned to the disclosing party no later than one hundred twenty (120) days from the effective date shown above, or shall be destroyed by the receiving party."
+            },
+            {
+              "id": "clause_0002",
+              "quote": "All Information identified as confidential and disclosed there under shall remain the sole property of the disclosing party, and the receiving party shall have no interest in or rights thereto except as set forth herein."
+            }
+          ],
+          "seen": [
+            "clause_0001",
+            "clause_0003",
+            "clause_0002",
+            "clause_0008",
+            "clause_0004"
+          ],
+          "contract_bytes": 2445,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001",
+                "clause_0003",
+                "clause_0002",
+                "clause_0008",
+                "clause_0004"
+              ],
+              "contract_bytes": 2445,
+              "usage": {
+                "completion_tokens": 632,
+                "prompt_tokens": 697,
+                "total_tokens": 1329,
+                "completion_time": 0.675723433,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 506
+                },
+                "prompt_time": 0.037643703,
+                "prompt_tokens_details": null,
+                "queue_time": 0.151980252,
+                "total_time": 0.713367136
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "fixed_reference": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0008",
+              "quote": "All products and any residue thereof remaining after the tests are completed shall returned to the disclosing party no later than one hundred twenty (120) days from the effective date shown above, or shall be destroyed by the receiving party."
+            },
+            {
+              "id": "clause_0002",
+              "quote": "All Information identified as confidential and disclosed there under shall remain the sole property of the disclosing party, and the receiving party shall have no interest in or rights thereto except as set forth herein."
+            }
+          ],
+          "seen": [
+            "clause_0001",
+            "clause_0003",
+            "clause_0002",
+            "clause_0008",
+            "clause_0004"
+          ],
+          "contract_bytes": 2445,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001",
+                "clause_0003",
+                "clause_0002",
+                "clause_0008",
+                "clause_0004"
+              ],
+              "contract_bytes": 2445,
+              "usage": {
+                "completion_tokens": 632,
+                "prompt_tokens": 697,
+                "total_tokens": 1329,
+                "completion_time": 0.675723433,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 506
+                },
+                "prompt_time": 0.037643703,
+                "prompt_tokens_details": null,
+                "queue_time": 0.151980252,
+                "total_time": 0.713367136
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "agent": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0001"
+          ],
+          "contract_bytes": 455,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0001"
+              ],
+              "contract_bytes": 455,
+              "usage": {
+                "completion_tokens": 178,
+                "prompt_tokens": 337,
+                "total_tokens": 515,
+                "completion_time": 0.205844092,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 158
+                },
+                "prompt_time": 0.022204491,
+                "prompt_tokens_details": null,
+                "queue_time": 0.421227564,
+                "total_time": 0.228048583
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "Contradiction"
+    },
+    {
+      "doc_id": 575,
+      "hyp_id": "nda-2",
+      "gold": "Contradiction",
+      "hypothesis": "Confidential Information shall only include technical information.",
+      "has_reference": false,
+      "span_count": 1,
+      "arms": {
+        "top_k": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0004",
+              "quote": "\u201cConfidential Information\u201d shall, mean all intellectual property, business plans, financial records and strategies, marketing plans, contacts, trade secrets, information, materials, documentation and software, as well as copies of all such materials made thereof as authorized by this Agreement, including written, oral, or verbal disclosures."
+            }
+          ],
+          "seen": [
+            "clause_0005",
+            "clause_0007",
+            "clause_0004",
+            "clause_0009",
+            "clause_0006"
+          ],
+          "contract_bytes": 3583,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005",
+                "clause_0007",
+                "clause_0004",
+                "clause_0009",
+                "clause_0006"
+              ],
+              "contract_bytes": 3583,
+              "usage": {
+                "completion_tokens": 272,
+                "prompt_tokens": 885,
+                "total_tokens": 1157,
+                "completion_time": 0.302157678,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 179
+                },
+                "prompt_time": 0.061114868,
+                "prompt_tokens_details": null,
+                "queue_time": 0.368601551,
+                "total_time": 0.363272546
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "fixed_reference": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0004",
+              "quote": "\u201cConfidential Information\u201d shall, mean all intellectual property, business plans, financial records and strategies, marketing plans, contacts, trade secrets, information, materials, documentation and software, as well as copies of all such materials made thereof as authorized by this Agreement, including written, oral, or verbal disclosures."
+            }
+          ],
+          "seen": [
+            "clause_0005",
+            "clause_0007",
+            "clause_0004",
+            "clause_0009",
+            "clause_0006"
+          ],
+          "contract_bytes": 3583,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005",
+                "clause_0007",
+                "clause_0004",
+                "clause_0009",
+                "clause_0006"
+              ],
+              "contract_bytes": 3583,
+              "usage": {
+                "completion_tokens": 272,
+                "prompt_tokens": 885,
+                "total_tokens": 1157,
+                "completion_time": 0.302157678,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 179
+                },
+                "prompt_time": 0.061114868,
+                "prompt_tokens_details": null,
+                "queue_time": 0.368601551,
+                "total_time": 0.363272546
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 1
+        },
+        "agent": {
+          "label": null,
+          "citations": [
+            {
+              "id": "clause_0005",
+              "quote": "2. Purpose. Vapotherm agrees to disclose the Confidential Information only for the following specific purpose (\u2018Permitted Purpose\u201d): ________________________________________________________________________________________________ ________________________________________________________________________________________________"
+            }
+          ],
+          "seen": [
+            "clause_0005"
+          ],
+          "contract_bytes": 330,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005"
+              ],
+              "contract_bytes": 330,
+              "usage": {
+                "completion_tokens": 245,
+                "prompt_tokens": 284,
+                "total_tokens": 529,
+                "completion_time": 0.257161342,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 178
+                },
+                "prompt_time": 0.0168403,
+                "prompt_tokens_details": null,
+                "queue_time": 0.286246893,
+                "total_time": 0.274001642
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "Contradiction"
+    },
+    {
+      "doc_id": 12,
+      "hyp_id": "nda-1",
+      "gold": "NotMentioned",
+      "hypothesis": "All Confidential Information shall be expressly identified by the Disclosing Party.",
+      "has_reference": true,
+      "span_count": 0,
+      "arms": {
+        "top_k": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0003",
+            "clause_0005",
+            "clause_0013",
+            "clause_0006",
+            "clause_0001"
+          ],
+          "contract_bytes": 4009,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0003",
+                "clause_0005",
+                "clause_0013",
+                "clause_0006",
+                "clause_0001"
+              ],
+              "contract_bytes": 4009,
+              "usage": {
+                "completion_tokens": 384,
+                "prompt_tokens": 1014,
+                "total_tokens": 1398,
+                "completion_time": 0.411581147,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 364
+                },
+                "prompt_time": 0.064027406,
+                "prompt_tokens_details": null,
+                "queue_time": 0.28431399,
+                "total_time": 0.475608553
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "fixed_reference": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0003",
+            "clause_0005",
+            "clause_0013",
+            "clause_0006",
+            "clause_0001"
+          ],
+          "contract_bytes": 4009,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0003",
+                "clause_0005",
+                "clause_0013",
+                "clause_0006",
+                "clause_0001"
+              ],
+              "contract_bytes": 4009,
+              "usage": {
+                "completion_tokens": 384,
+                "prompt_tokens": 1014,
+                "total_tokens": 1398,
+                "completion_time": 0.411581147,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 364
+                },
+                "prompt_time": 0.064027406,
+                "prompt_tokens_details": null,
+                "queue_time": 0.28431399,
+                "total_time": 0.475608553
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        },
+        "agent": {
+          "label": "NotMentioned",
+          "citations": [
+            {
+              "id": "clause_0003",
+              "quote": "1.1 With the understanding that CLIENT\u2019s Formulations and Processing Procedures are proprietary to CLIENT, to the extent that CLIENT shall disclose to BROOKS personal, financial and product information, including their Formulations and Processing Procedures (\u201cConfidential Information\u201d), then all the Confidential Information disclosed to BROOKS shall be received by BROOKS in confidence for purposes of this Agreement except as otherwise provided under Section 3 below."
+            }
+          ],
+          "seen": [
+            "clause_0003"
+          ],
+          "contract_bytes": 841,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0003"
+              ],
+              "contract_bytes": 841,
+              "usage": {
+                "completion_tokens": 377,
+                "prompt_tokens": 409,
+                "total_tokens": 786,
+                "completion_time": 0.413280583,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 262
+                },
+                "prompt_time": 0.02423218,
+                "prompt_tokens_details": null,
+                "queue_time": 0.285253922,
+                "total_time": 0.437512763
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "NotMentioned"
+    },
+    {
+      "doc_id": 32,
+      "hyp_id": "nda-2",
+      "gold": "Contradiction",
+      "hypothesis": "Confidential Information shall only include technical information.",
+      "has_reference": true,
+      "span_count": 2,
+      "arms": {
+        "top_k": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0002",
+            "clause_0004",
+            "clause_0011",
+            "clause_0007"
+          ],
+          "contract_bytes": 5734,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002",
+                "clause_0004",
+                "clause_0011",
+                "clause_0007"
+              ],
+              "contract_bytes": 5734,
+              "usage": {
+                "completion_tokens": 659,
+                "prompt_tokens": 1280,
+                "total_tokens": 1939,
+                "completion_time": 0.676748242,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 494
+                },
+                "prompt_time": 0.073666198,
+                "prompt_tokens_details": null,
+                "queue_time": 0.367654651,
+                "total_time": 0.75041444
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 2
+        },
+        "fixed_reference": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0002",
+              "quote": "(a) that consists of Trade Secrets (as hereinafter defined), discoveries, technical, engineering, financial, pricing and/or other business data and documentation, sales information, inventions, know-how, manufacturing techniques and specifications, process technologies, business plans, all disclosed by the disclosing party in furtherance of the purpose set forth in Section 2;"
+            }
+          ],
+          "seen": [
+            "clause_0002",
+            "clause_0003",
+            "clause_0004",
+            "clause_0011"
+          ],
+          "contract_bytes": 5709,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002",
+                "clause_0003",
+                "clause_0004",
+                "clause_0011"
+              ],
+              "contract_bytes": 5709,
+              "usage": {
+                "completion_tokens": 402,
+                "prompt_tokens": 1255,
+                "total_tokens": 1657,
+                "completion_time": 0.445271526,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 299
+                },
+                "prompt_time": 0.094638635,
+                "prompt_tokens_details": null,
+                "queue_time": 0.450640282,
+                "total_time": 0.539910161
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 2
+        },
+        "agent": {
+          "label": "Contradiction",
+          "citations": [
+            {
+              "id": "clause_0002",
+              "quote": "(a) that consists of Trade Secrets (as hereinafter defined), discoveries, technical, engineering, financial, pricing and/or other business data and documentation, sales information, inventions, know-how, manufacturing techniques and specifications, process technologies, business plans, all disclosed by the disclosing party in furtherance of the purpose set forth in Section 2;"
+            }
+          ],
+          "seen": [
+            "clause_0002"
+          ],
+          "contract_bytes": 1536,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0002"
+              ],
+              "contract_bytes": 1536,
+              "usage": {
+                "completion_tokens": 300,
+                "prompt_tokens": 523,
+                "total_tokens": 823,
+                "completion_time": 0.337071626,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 197
+                },
+                "prompt_time": 0.029421882,
+                "prompt_tokens_details": null,
+                "queue_time": 0.284749551,
+                "total_time": 0.366493508
+              }
+            }
+          ],
+          "citation_span_hits": 1,
+          "evidence_hits": 2
+        }
+      },
+      "deberta": "Contradiction"
+    },
+    {
+      "doc_id": 45,
+      "hyp_id": "nda-13",
+      "gold": "Entailment",
+      "hypothesis": "Receiving Party may acquire information similar to Confidential Information from a third party.",
+      "has_reference": true,
+      "span_count": 2,
+      "arms": {
+        "top_k": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0005",
+            "clause_0004",
+            "clause_0006",
+            "clause_0008",
+            "clause_0001"
+          ],
+          "contract_bytes": 3373,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005",
+                "clause_0004",
+                "clause_0006",
+                "clause_0008",
+                "clause_0001"
+              ],
+              "contract_bytes": 3373,
+              "usage": {
+                "completion_tokens": 381,
+                "prompt_tokens": 886,
+                "total_tokens": 1267,
+                "completion_time": 0.430081353,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 361
+                },
+                "prompt_time": 0.044287627,
+                "prompt_tokens_details": null,
+                "queue_time": 0.285280065,
+                "total_time": 0.47436898
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 2
+        },
+        "fixed_reference": {
+          "label": "NotMentioned",
+          "citations": [],
+          "seen": [
+            "clause_0005",
+            "clause_0006",
+            "clause_0004",
+            "clause_0008",
+            "clause_0001"
+          ],
+          "contract_bytes": 3373,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005",
+                "clause_0006",
+                "clause_0004",
+                "clause_0008",
+                "clause_0001"
+              ],
+              "contract_bytes": 3373,
+              "usage": {
+                "completion_tokens": 306,
+                "prompt_tokens": 886,
+                "total_tokens": 1192,
+                "completion_time": 0.355552555,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 286
+                },
+                "prompt_time": 0.059152395,
+                "prompt_tokens_details": null,
+                "queue_time": 0.051456924,
+                "total_time": 0.41470495
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 2
+        },
+        "agent": {
+          "label": null,
+          "citations": [],
+          "seen": [
+            "clause_0005"
+          ],
+          "contract_bytes": 949,
+          "trace": [
+            {
+              "sent_clause_ids": [
+                "clause_0005"
+              ],
+              "contract_bytes": 949,
+              "usage": {
+                "completion_tokens": 506,
+                "prompt_tokens": 433,
+                "total_tokens": 939,
+                "completion_time": 0.566091506,
+                "completion_tokens_details": {
+                  "reasoning_tokens": 486
+                },
+                "prompt_time": 0.050417644,
+                "prompt_tokens_details": null,
+                "queue_time": 0.316008097,
+                "total_time": 0.61650915
+              }
+            }
+          ],
+          "citation_span_hits": 0,
+          "evidence_hits": 0
+        }
+      },
+      "deberta": "Entailment"
+    }
+  ]
+}

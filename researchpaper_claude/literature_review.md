@@ -1,5 +1,7 @@
 # EdgeLegal — Literature Review & Gap Analysis
 
+**November follow-up.** PAKTON already applies agents to long-contract QA. Multi-View Contract Graph models links among clauses. CON-QA combines local contract processing and hosted generation. EdgeLegal is evaluating adaptive lookup for NDA verdicts under a matched excerpt budget. [PAKTON](https://aclanthology.org/2025.emnlp-main.403/) · [Multi-View Contract Graph](https://aclanthology.org/2026.nora-1.5/) · [CON-QA](https://arxiv.org/abs/2509.19925)
+
 Compiled 2026-09-25 via web search (WebSearch/WebFetch) across arXiv, ACL Anthology, IEEE
 Xplore, ACM Digital Library, SpringerLink, and Semantic Scholar. See `search_log.md` for
 what was searched and a note on coverage limits. Per-paper detail is in `notes/` — read
@@ -32,20 +34,22 @@ would have found it for you, and that's a much worse way to find out.
   the LegalWiz analysis in `notes/03` already covers it. No separate
   "concurrent work" entry is needed.
 
-## Research question and overlap
+## Research question and overlap (2026-11-10)
 
-LegalWiz uses confidence in a legal contradiction pipeline. Work on
-[small legal models](https://arxiv.org/abs/2603.25944) compares keyword and dense
-retrieval on ContractNLI. [CoAL-RAG](https://arxiv.org/abs/2608.17536) uses
-retrieval consistency to select a search strategy, and
-[Verifiable Legal Contract QA](https://ieeexplore.ieee.org/abstract/document/11690878/)
-combines clause retrieval, DeBERTa verification, and confidence gating.
+| Source | Direct overlap | Distinction for EdgeLegal |
+|---|---|---|
+| [ContractNLI](https://aclanthology.org/2021.findings-emnlp.164/) | Document-level inference and annotated evidence spans. The original baseline already performs document-level prediction and evidence identification. | Our diagnostics follow evidence through retrieval and truncation before measuring classifier errors. |
+| [Attribute or Abstain](https://aclanthology.org/2024.emnlp-main.463/) | Includes ContractNLI and studies evidence quality as a signal for selective prediction. See §6 and the evidence metrics in the paper. | Our proposed routing comparison sends selected cases to a second model and measures call rate alongside verdict quality. |
+| [Can Small Models Reason About Legal Documents?](https://arxiv.org/abs/2603.25944) | Tests BM25 and dense RAG on legal benchmarks including ContractNLI. | Our experiments trace errors through the same classifier under different evidence inputs. |
+| [LegalWiz, §3.2](https://arxiv.org/html/2510.03418v2#S3.SS2) | Mines contradictions in synthetic documents by escalating NLI-predicted contradictions or low-confidence sentence pairs. | EdgeLegal's decision unit is a contract and a fixed hypothesis. The current gate applies a single confidence threshold to its document verdict. |
+| [FrugalGPT](https://arxiv.org/abs/2305.05176) and [CoAL-RAG](https://arxiv.org/abs/2608.17536) | Establish model cascades and use of retrieval consistency to choose legal search strategies, respectively. | The held-out comparison must show what evidence signals add at matched LLM call rates. |
 
-EdgeLegal's proposed empirical comparison asks whether retrieved evidence
-changes classifier reliability and whether evidence signals help route cases
-at a matched LLM-call rate on ContractNLI. The exact overlap with prior work
-still needs a targeted review. See [current research progress](../docs/EdgeLegal_Progress.md)
-for completed experiments and proposed work.
+The defensible current contribution is the paired diagnosis of evidence
+retrieval, visibility after truncation, and classifier behavior on ContractNLI.
+The exact scope of overlap with [Verifiable Legal Contract QA](https://ieeexplore.ieee.org/abstract/document/11690878/)
+remains open because the full article could not be verified during this pass.
+The [research handoff](../docs/EdgeLegal_Progress.md) records completed
+experiments and proposed work.
 
 ## Future work — multi-layer contradiction detection (journal-paper scope, not this conference paper)
 

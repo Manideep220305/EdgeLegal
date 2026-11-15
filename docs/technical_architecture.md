@@ -1,5 +1,7 @@
 # EdgeLegal — Technical Architecture Document
 
+> The experimental route starts with BM25, lets the LLM choose another lookup, checks quoted text, and maps citations to the original PDF. See the [current architecture notes](EdgeLegal_Documentation.md#13-roadmap-and-future-work).
+
 > Historical snapshot. Use [current research progress](EdgeLegal_Progress.md) for implementation and experiment status.
 
 **Target Audience:** Technical Product Managers (TPM), Engineering Leads, System Architects  

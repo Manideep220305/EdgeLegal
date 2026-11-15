@@ -1,5 +1,7 @@
 # EdgeLegal: Review 3, Slide-wise Context
 
+> For a current presentation, use the 89.09% document-only benchmark and describe the lookup agent as experimental. [Verified results](../docs/EdgeLegal_Progress.md).
+
 > Historical snapshot. Use [current research progress](../docs/EdgeLegal_Progress.md) for implementation and experiment status.
 
 Purpose of this file: for each of the 11 slides in the Review 3 structure, what must go on the slide, what to say, where the material comes from in the project, and what is still missing. It follows the format of the Review-II deck (red titles, short bullets, no tables) and uses only facts from the project docs, code and results. No names are included.

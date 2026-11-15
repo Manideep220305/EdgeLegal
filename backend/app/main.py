@@ -4,7 +4,7 @@ import time
 import uuid
 from typing import List, Literal, Optional
 
-import fitz  # PyMuPDF
+import pymupdf as fitz
 from fastapi import FastAPI, Request, UploadFile, File, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
@@ -45,7 +45,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "uploads")
+UPLOAD_DIR = os.getenv("EDGELEGAL_UPLOAD_DIR", os.path.join(os.path.dirname(__file__), "..", "uploads"))
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 history_db.init_db()
@@ -101,6 +101,9 @@ async def upload_document(file: UploadFile = File(...)):
     try:
         # Structure-aware clause parsing + indexing for the live triage agent.
         clause_count = live_service.index_document(doc_id, file_path)
+    except fitz.FileDataError:
+        os.remove(file_path)
+        raise HTTPException(status_code=422, detail="This PDF could not be opened. Upload a readable PDF.") from None
     except Exception as e:
         log_exception(logger, "index_document() failed - cleaning up upload",
                       doc_id=doc_id, filename=file.filename)
@@ -108,6 +111,13 @@ async def upload_document(file: UploadFile = File(...)):
         if os.path.exists(file_path):
             os.remove(file_path)
         raise HTTPException(status_code=500, detail=str(e))
+
+    if clause_count == 0:
+        os.remove(file_path)
+        raise HTTPException(
+            status_code=422,
+            detail="No readable text found. Upload a PDF with selectable text or run OCR on the scan first.",
+        )
 
     try:
         with fitz.open(file_path) as pdf:
@@ -126,6 +136,10 @@ async def analyze_document(request: AnalyzeRequest):
     try:
         result = live_service.run_agent(request.doc_id, request.hypothesis)
         report = ReportResult(**result)
+    except live_service.NoIndexedClausesError as e:
+        raise HTTPException(status_code=422, detail=str(e)) from e
+    except live_service.ReviewProviderError as e:
+        raise HTTPException(status_code=503, detail=str(e)) from e
     except Exception as e:
         log_exception(logger, "run_agent() failed", doc_id=request.doc_id,
                       hypothesis=request.hypothesis[:80])

@@ -55,4 +55,5 @@ frontend/.vite/
 .claude/
 .impeccable/
 logs/
+results/reference-rag-dev/groq_quota.json
 backend/test_groq.py

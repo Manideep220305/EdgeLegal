@@ -1,0 +1,49 @@
+[{"stream_name":"stdout","time":6.278552799,"data":"Tesla T4\n"}
+,{"stream_name":"stdout","time":41.065409106,"data":"2026-11-14 02:20:08 INFO     backend.app.logging_config       configure_logging:151 | Logging configured: console=INFO file=/kaggle/working/edgelegal/logs/edgelegal.log\n"}
+,{"stream_name":"stdout","time":41.072115958,"data":"2026-11-14 02:20:08 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.start       | hf_checkpoint='cross-encoder/nli-deberta-v3-base' checkpoint_path=None device='cuda'\n"}
+,{"stream_name":"stdout","time":41.445833384,"data":"2026-11-14 02:20:08 WARNING  huggingface_hub.utils._http      _warn_on_warning_headers:993 | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":41.445879927,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":50.714687553,"data":"\rLoading weights:   0%|          | 0/202 [00:00\u003c?, ?it/s]\rLoading weights: 100%|██████████| 202/202 [00:00\u003c00:00, 2646.36it/s]\n"}
+,{"stream_name":"stdout","time":51.16201023,"data":"2026-11-14 02:20:18 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.done        | hf_checkpoint='cross-encoder/nli-deberta-v3-base' fine_tuned=False device='cuda'\n"}
+,{"stream_name":"stdout","time":401.444291531,"data":"2026-11-14 02:26:08 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.start       | hf_checkpoint='cross-encoder/nli-deberta-v3-base' checkpoint_path=None device='cuda'\n"}
+,{"stream_name":"stderr","time":402.961489145,"data":"\rLoading weights:   0%|          | 0/202 [00:00\u003c?, ?it/s]\rLoading weights: 100%|██████████| 202/202 [00:00\u003c00:00, 2753.70it/s]\n"}
+,{"stream_name":"stdout","time":403.16888989,"data":"2026-11-14 02:26:10 INFO     backend.app.triage_model.model   log_step:177 | STEP model.load.done        | hf_checkpoint='cross-encoder/nli-deberta-v3-base' fine_tuned=False device='cuda'\n"}
+,{"stream_name":"stdout","time":454.186952574,"data":"Document-only evaluation: 200/1751.\n"}
+,{"stream_name":"stdout","time":527.523996975,"data":"Document-only evaluation: 400/1751.\n"}
+,{"stream_name":"stdout","time":567.112831866,"data":"Document-only evaluation: 600/1751.\n"}
+,{"stream_name":"stdout","time":611.365651391,"data":"Document-only evaluation: 800/1751.\n"}
+,{"stream_name":"stdout","time":655.388464797,"data":"Document-only evaluation: 1000/1751.\n"}
+,{"stream_name":"stdout","time":724.314416053,"data":"Document-only evaluation: 1200/1751.\n"}
+,{"stream_name":"stdout","time":788.899732836,"data":"Document-only evaluation: 1400/1751.\n"}
+,{"stream_name":"stdout","time":880.609027387,"data":"Document-only evaluation: 1600/1751.\n"}
+,{"stream_name":"stdout","time":949.915786144,"data":"{\n"}
+,{"stream_name":"stdout","time":949.915822962,"data":"  \"cases\": 1751,\n"}
+,{"stream_name":"stdout","time":949.915827995,"data":"  \"contracts\": 103,\n"}
+,{"stream_name":"stdout","time":949.915832136,"data":"  \"correct\": 1560,\n"}
+,{"stream_name":"stdout","time":949.915836313,"data":"  \"accuracy\": 0.8909194745859509,\n"}
+,{"stream_name":"stdout","time":949.915840817,"data":"  \"macro_f1\": 0.8503259123127288,\n"}
+,{"stream_name":"stdout","time":949.915845382,"data":"  \"per_class\": {\n"}
+,{"stream_name":"stdout","time":949.915849547,"data":"    \"Contradiction\": {\n"}
+,{"stream_name":"stdout","time":949.915853675,"data":"      \"correct\": 138,\n"}
+,{"stream_name":"stdout","time":949.915857707,"data":"      \"total\": 189\n"}
+,{"stream_name":"stdout","time":949.915871473,"data":"    },\n"}
+,{"stream_name":"stdout","time":949.91587483,"data":"    \"Entailment\": {\n"}
+,{"stream_name":"stdout","time":949.91587782,"data":"      \"correct\": 759,\n"}
+,{"stream_name":"stdout","time":949.915880906,"data":"      \"total\": 820\n"}
+,{"stream_name":"stdout","time":949.915883833,"data":"    },\n"}
+,{"stream_name":"stdout","time":949.915886678,"data":"    \"NotMentioned\": {\n"}
+,{"stream_name":"stdout","time":949.915889602,"data":"      \"correct\": 663,\n"}
+,{"stream_name":"stdout","time":949.915892951,"data":"      \"total\": 742\n"}
+,{"stream_name":"stdout","time":949.915896115,"data":"    }\n"}
+,{"stream_name":"stdout","time":949.915899149,"data":"  },\n"}
+,{"stream_name":"stdout","time":949.91590318,"data":"  \"false_mentions\": 79,\n"}
+,{"stream_name":"stdout","time":949.91590648,"data":"  \"logical_llm_calls\": 0,\n"}
+,{"stream_name":"stdout","time":949.915909923,"data":"  \"device\": \"cuda\"\n"}
+,{"stream_name":"stdout","time":949.915913423,"data":"}\n"}
+,{"stream_name":"stderr","time":954.834595256,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":954.834641161,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":955.041834497,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":955.041872565,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":955.754064046,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":956.570428982,"data":"[NbConvertApp] Writing 316142 bytes to __results__.html\n"}
+]

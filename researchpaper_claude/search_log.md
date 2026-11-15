@@ -1,5 +1,7 @@
 # Search log — 2026-09-25
 
+**14 November follow-up.** Checked work on contract QA agents, clause relationships, and privacy-aware contract QA. See the [literature review](literature_review.md) for the closest papers.
+
 ## Method
 WebSearch (general web) + WebFetch (for full-text summarization of specific pages),
 scoped where useful with `allowed_domains` to ieeexplore.ieee.org, link.springer.com,
@@ -72,3 +74,12 @@ contradictions and (b) cross-document clause-vs-clause contradictions.
   ("ContraVis: Evidence-Grounded Visual Analytics for Contradiction Review in Legal
   Contracts") — worth a manual look, title suggested it might be closer to this idea
   than it turned out other candidates were.
+
+## Targeted related-work check (2026-11-10)
+
+Checked the ContractNLI benchmark, LegalWiz v2 §3.2, and *Attribute or
+Abstain* §6 against the primary papers. The latter already includes
+ContractNLI and evaluates evidence quality for selective prediction.
+LegalWiz escalates predicted contradictions as well as low-confidence
+pairs. Updated the manuscript and literature comparison accordingly.
+The IEEE contract-QA full text could not be verified during this pass.
